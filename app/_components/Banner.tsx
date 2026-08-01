@@ -50,7 +50,7 @@ const Banner = () => {
                         <span className="font-medium text-foreground">
                             Rashid
                         </span>
-                        . A creative Full Stack Developer with 3+ years of
+                        . A creative Full Stack Developer with 2+ years of
                         experience in building high-performance, scalable, and
                         responsive web solutions.
                     </p>
