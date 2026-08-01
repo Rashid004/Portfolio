@@ -6,14 +6,12 @@ export const GENERAL_INFO = {
     emailSubject: "Let's collaborate on a project",
     emailBody: 'Hi Rashid, I am reaching out to you because...',
 
-    oldPortfolio: 'https://www.legacy.me.toinfinite.dev',
     upworkProfile: '#',
 };
 
 export const SOCIAL_LINKS = [
     { name: 'github', url: 'https://github.com/Rashid004' },
     { name: 'linkedin', url: 'https://www.linkedin.com/in/ansari-rashid-a52305278' },
-    { name: 'Old Version', url: GENERAL_INFO.oldPortfolio },
 ];
 
 export const MY_STACK = {
