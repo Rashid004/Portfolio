@@ -140,7 +140,6 @@ export const MY_STACK: Record<string, StackItem[]> = {
   {
    name: 'Linux',
    icon: '/logo/linux.svg',
-   invert: true,
   },
   {
    name: 'Ubuntu',
@@ -153,6 +152,7 @@ export const MY_STACK: Record<string, StackItem[]> = {
   {
    name: 'GitHub',
    icon: '/logo/github.svg',
+   invert: true,
   },
   {
    name: 'CI/CD',
@@ -171,7 +171,6 @@ export const MY_STACK: Record<string, StackItem[]> = {
   {
    name: 'LLM',
    icon: '/logo/chatgpt.svg',
-   invert: true,
   },
   {
    name: 'LangChain',
@@ -213,8 +212,8 @@ export const MY_STACK: Record<string, StackItem[]> = {
   },
   {
    name: 'Vercel',
-   icon:
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg',
+   icon: '/logo/vercel.svg',
+   invert: true,
   },
   {
    name: 'npm',
