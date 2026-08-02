@@ -1,35 +1,8 @@
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
-import { GitFork, Star } from 'lucide-react';
 import Link from 'next/link';
-import {
-    GithubIcon,
-    LinkedinIcon,
-    XIcon,
-} from '@/components/icons/SocialIcons';
+import { SOCIAL_ICONS } from '@/components/icons/SocialIcons';
 
-const SOCIAL_ICONS: Record<
-    string,
-    React.ComponentType<React.SVGProps<SVGSVGElement>>
-> = {
-    github: GithubIcon,
-    linkedin: LinkedinIcon,
-    x: XIcon,
-};
-
-interface RepoStats {
-    stargazers_count: number;
-    forks_count: number;
-}
-
-const Footer = async () => {
-    const repoStats = await fetch(
-        'https://api.github.com/repos/Rashid004/Portfolio',
-        {
-            next: {
-                revalidate: 60 * 60, // 1 hour
-            },
-        },
-    );
+const Footer = () => {
     return (
         <footer className="text-center" id="contact">
             <div className="container">

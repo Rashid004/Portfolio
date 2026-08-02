@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { ButtonHTMLAttributes, ComponentProps, ReactNode } from 'react';
+import { ButtonHTMLAttributes, ComponentProps, ReactNode } from 'react';
 import { Variant } from '@/types';
 import { cn } from '@/lib/utils';
 

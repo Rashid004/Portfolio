@@ -5,12 +5,12 @@ import { GENERAL_INFO } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import React from 'react';
+import { useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const Banner = () => {
-    const containerRef = React.useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     // move the content a little up on scroll
     useGSAP(

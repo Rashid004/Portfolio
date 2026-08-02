@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react';
+import type { ComponentType, SVGProps } from 'react';
 
 export const GithubIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
@@ -17,3 +17,12 @@ export const XIcon = (props: SVGProps<SVGSVGElement>) => (
         <path d="M18.24 2H21l-6.55 7.49L22.14 22h-6.3l-4.94-6.47L5.24 22H2.46l7-8.01L1.86 2h6.46l4.47 5.91L18.24 2Zm-1.1 18.17h1.72L7.94 3.75H6.1L17.14 20.17Z" />
     </svg>
 );
+
+export const SOCIAL_ICONS: Record<
+    string,
+    ComponentType<SVGProps<SVGSVGElement>>
+> = {
+    github: GithubIcon,
+    linkedin: LinkedinIcon,
+    x: XIcon,
+};

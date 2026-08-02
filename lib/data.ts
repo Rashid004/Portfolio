@@ -395,23 +395,52 @@ export const PROJECTS: IProject[] = [
 
 export const MY_EXPERIENCE = [
  {
-  title: 'Software Engineer (Frontend)',
-  company: 'Strativ AB',
-  duration: 'Dec 2024 - Present',
+  title: 'Full-stack Developer (SDE I)',
+  company: 'DotSyndicate',
+  logo: '/logo/dotsyndicate.png',
+  duration: 'Feb 2025 - Present',
+  description: [
+   'Delivered full-stack features across ecommerce stores, corporate sites, real estate portals, and tour platforms, handling both UI and backend workflows.',
+   'Built fast, responsive UIs using React & Next.js, improving user experience and reducing load times across all client projects.',
+   'Designed and managed scalable backend systems using Firebase — including Firestore database models, Cloud Functions, Serverless APIs, and secure authentication flows.',
+   'Implemented role-based access, real-time updates, and optimized queries to improve data performance and reduce backend costs.',
+   'Collaborated with cross-functional teams and clients to translate requirements into production-ready features.',
+   'Led planning, execution, testing, and deployment of modules, speeding up project delivery and reducing revisions.',
+   'Ensured clean code architecture, reusable components, and maintainable backend logic for long-term scalability.',
+  ],
+  skills: ['React.js', 'Next.js', 'Firebase', 'TypeScript', 'Node.js'],
  },
  {
-  title: 'Frontend Developer',
-  company: 'Epikcoders',
-  duration: 'Oct 2023 - Nov 2024',
+  title: 'Full-stack Developer (Internship)',
+  company: 'DotSyndicate',
+  logo: '/logo/dotsyndicate.png',
+  duration: 'Aug 2024 - Feb 2025',
+ },
+];
+
+export type EducationLevel = 'degree' | 'school';
+
+export const MY_EDUCATION = [
+ {
+  level: 'degree' as EducationLevel,
+  degree: 'Bachelor of Computer Application',
+  institute: 'Yashwantrao Chavan Maharashtra Open University (YCMOU), Nashik',
+  duration: 'Aug 2022 - Aug 2025',
+  grade: 'CGPA: 8.2',
  },
  {
-  title: 'Frontend Engineer',
-  company: 'Anchorblock Technology',
-  duration: 'Oct 2022 - Sep 2023',
+  level: 'school' as EducationLevel,
+  degree: 'HSC, Science',
+  institute:
+   'Bandra Boys Urdu High School and Junior College of Science Commerce and Arts',
+  duration: 'Sep 2020 - Mar 2022',
+  grade: '',
  },
  {
-  title: 'Frontend Developer (Part-time)',
-  company: 'Branex IT',
-  duration: 'Jan 2022 - Oct 2022',
+  level: 'school' as EducationLevel,
+  degree: 'SSC',
+  institute: 'Kher Nagar Municipal School No. 1',
+  duration: 'Jun 2019 - Mar 2020',
+  grade: 'Grade: 79.20%',
  },
 ];
