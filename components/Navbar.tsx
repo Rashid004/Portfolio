@@ -1,15 +1,20 @@
 'use client';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import { MoveUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
+import {
+    GithubIcon,
+    LinkedinIcon,
+    XIcon,
+} from '@/components/icons/SocialIcons';
 
-const COLORS = [
-    'bg-yellow-500 text-black',
-    'bg-blue-500 text-white',
-    'bg-teal-500 text-black',
-    'bg-indigo-500 text-white',
+const DOT_COLORS = [
+    'bg-yellow-500',
+    'bg-blue-500',
+    'bg-teal-500',
+    'bg-indigo-500',
 ];
 
 const MENU_LINKS = [
@@ -31,6 +36,15 @@ const MENU_LINKS = [
     },
 ];
 
+const SOCIAL_ICONS: Record<
+    string,
+    React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
+    github: GithubIcon,
+    linkedin: LinkedinIcon,
+    x: XIcon,
+};
+
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const router = useRouter();
@@ -39,8 +53,14 @@ const Navbar = () => {
         <>
             <div className="sticky top-0 z-[4]">
                 <button
+                    aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={isMenuOpen}
                     className={cn(
-                        'group size-12 absolute top-5 right-5 md:right-10 z-[2]',
+                        'group size-12 absolute top-5 right-5 md:right-10 z-[5] rounded-full',
+                        'transition-all duration-300',
+                        isMenuOpen
+                            ? 'bg-white/[0.06] ring-1 ring-white/10'
+                            : 'hover:bg-white/[0.04]',
                     )}
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
@@ -67,7 +87,7 @@ const Navbar = () => {
 
             <div
                 className={cn(
-                    'overlay fixed inset-0 z-[2] bg-black/70 transition-all duration-150',
+                    'overlay fixed inset-0 z-[2] bg-black/60 backdrop-blur-md transition-all duration-500',
                     {
                         'opacity-0 invisible pointer-events-none': !isMenuOpen,
                     },
@@ -77,80 +97,128 @@ const Navbar = () => {
 
             <div
                 className={cn(
-                    'fixed top-0 right-0 h-[100dvh] w-[500px] max-w-[calc(100vw-3rem)] transform translate-x-full transition-transform duration-700 z-[3] overflow-hidden gap-y-14',
-                    'flex flex-col lg:justify-center py-10',
+                    'fixed top-0 right-0 h-[100dvh] w-[560px] max-w-[calc(100vw-2.5rem)] transform translate-x-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] z-[3] overflow-hidden',
+                    'flex flex-col py-8 sm:py-10',
                     { 'translate-x-0': isMenuOpen },
                 )}
             >
                 <div
                     className={cn(
-                        'fixed inset-0 scale-150 translate-x-1/2 rounded-[50%] bg-background-light duration-700 delay-150 z-[-1]',
-                        {
-                            'translate-x-0': isMenuOpen,
-                        },
+                        'absolute inset-0 -z-10 bg-background-light/95 backdrop-blur-2xl border-l border-white/[0.06]',
+                    )}
+                ></div>
+                <div
+                    className={cn(
+                        'pointer-events-none absolute -top-40 -right-40 -z-10 size-[420px] rounded-full bg-primary/10 blur-[120px] transition-opacity duration-1000',
+                        isMenuOpen ? 'opacity-100 delay-300' : 'opacity-0',
                     )}
                 ></div>
 
-                <div className="grow flex md:items-center w-full max-w-[300px] mx-8 sm:mx-auto">
-                    <div className="flex gap-10 lg:justify-between max-lg:flex-col w-full">
-                        <div className="max-lg:order-2">
-                            <p className="text-muted-foreground mb-5 md:mb-8">
-                                SOCIAL
-                            </p>
-                            <ul className="space-y-3">
-                                {SOCIAL_LINKS.map((link) => (
-                                    <li key={link.name}>
-                                        <a
-                                            href={link.url}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="text-lg capitalize hover:underline"
-                                        >
-                                            {link.name}
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="">
-                            <p className="text-muted-foreground mb-5 md:mb-8">
+                <div className="flex flex-col h-full w-full max-w-[380px] mx-8 sm:mx-auto px-1">
+                    <div className="grow flex flex-col justify-center gap-12 sm:gap-14">
+                        <nav>
+                            <p className="text-[11px] font-medium text-muted-foreground tracking-[0.3em] mb-6">
                                 MENU
                             </p>
-                            <ul className="space-y-3">
+                            <ul className="flex flex-col">
                                 {MENU_LINKS.map((link, idx) => (
-                                    <li key={link.name}>
+                                    <li
+                                        key={link.name}
+                                        className="border-b border-white/[0.06] last:border-none"
+                                    >
                                         <button
                                             onClick={() => {
                                                 router.push(link.url);
                                                 setIsMenuOpen(false);
                                             }}
-                                            className="group text-xl flex items-center gap-3"
+                                            style={{
+                                                transitionDelay: isMenuOpen
+                                                    ? `${150 + idx * 60}ms`
+                                                    : '0ms',
+                                            }}
+                                            className={cn(
+                                                'group w-full flex items-center gap-4 py-3.5 sm:py-4 text-left transition-all duration-500 ease-out',
+                                                isMenuOpen
+                                                    ? 'opacity-100 translate-x-0'
+                                                    : 'opacity-0 translate-x-4',
+                                            )}
                                         >
                                             <span
                                                 className={cn(
-                                                    'size-3.5 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-[200%] transition-all',
-                                                    COLORS[idx],
+                                                    'size-2 rounded-full shrink-0 transition-transform duration-300 group-hover:scale-150',
+                                                    DOT_COLORS[
+                                                        idx % DOT_COLORS.length
+                                                    ],
                                                 )}
-                                            >
-                                                <MoveUpRight
-                                                    size={8}
-                                                    className="scale-0 group-hover:scale-100 transition-all"
-                                                />
+                                            />
+                                            <span className="flex-1 text-2xl sm:text-3xl font-anton uppercase tracking-tight text-foreground/85 transition-colors duration-300 group-hover:text-foreground">
+                                                {link.name}
                                             </span>
-                                            {link.name}
+                                            <ArrowUpRight
+                                                size={20}
+                                                className="text-muted-foreground opacity-0 -translate-x-2 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:text-primary"
+                                            />
                                         </button>
                                     </li>
                                 ))}
                             </ul>
+                        </nav>
+
+                        <div>
+                            <p className="text-[11px] font-medium text-muted-foreground tracking-[0.3em] mb-5">
+                                SOCIAL
+                            </p>
+                            <ul className="flex items-center gap-3">
+                                {SOCIAL_LINKS.map((link, idx) => {
+                                    const Icon = SOCIAL_ICONS[link.name];
+                                    return (
+                                        <li key={link.name}>
+                                            <a
+                                                href={link.url}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                aria-label={link.name}
+                                                style={{
+                                                    transitionDelay: isMenuOpen
+                                                        ? `${380 + idx * 60}ms`
+                                                        : '0ms',
+                                                }}
+                                                className={cn(
+                                                    'group relative flex size-11 items-center justify-center rounded-full border border-white/10 text-foreground/70 transition-all duration-500 ease-out hover:border-primary/40 hover:text-primary hover:-translate-y-1',
+                                                    isMenuOpen
+                                                        ? 'opacity-100 translate-y-0'
+                                                        : 'opacity-0 translate-y-3',
+                                                )}
+                                            >
+                                                {Icon && (
+                                                    <Icon className="size-[18px] transition-transform duration-300 group-hover:scale-110" />
+                                                )}
+                                            </a>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <div className="w-full max-w-[300px] mx-8 sm:mx-auto">
-                    <p className="text-muted-foreground mb-4">GET IN TOUCH</p>
-                    <a href={`mailto:${GENERAL_INFO.email}`}>
-                        {GENERAL_INFO.email}
-                    </a>
+                    <div className="pt-8 border-t border-white/[0.06]">
+                        <p className="text-[11px] font-medium text-muted-foreground tracking-[0.3em] mb-3">
+                            GET IN TOUCH
+                        </p>
+                        <a
+                            href={`mailto:${GENERAL_INFO.email}`}
+                            className="group inline-flex items-center gap-2 text-base sm:text-lg text-foreground/90 transition-colors duration-300 hover:text-primary"
+                        >
+                            <span className="relative">
+                                {GENERAL_INFO.email}
+                                <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
+                            </span>
+                            <ArrowUpRight
+                                size={16}
+                                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
         </>

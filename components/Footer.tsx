@@ -1,5 +1,20 @@
-import { GENERAL_INFO } from '@/lib/data';
+import { GENERAL_INFO, SOCIAL_LINKS } from '@/lib/data';
 import { GitFork, Star } from 'lucide-react';
+import Link from 'next/link';
+import {
+    GithubIcon,
+    LinkedinIcon,
+    XIcon,
+} from '@/components/icons/SocialIcons';
+
+const SOCIAL_ICONS: Record<
+    string,
+    React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
+    github: GithubIcon,
+    linkedin: LinkedinIcon,
+    x: XIcon,
+};
 
 interface RepoStats {
     stargazers_count: number;
@@ -15,38 +30,37 @@ const Footer = async () => {
             },
         },
     );
-
-    const { stargazers_count, forks_count } =
-        (await repoStats.json()) as RepoStats;
-
     return (
-        <footer className="text-center pb-5" id="contact">
+        <footer className="text-center" id="contact">
             <div className="container">
                 <p className="text-lg">Have a project in mind?</p>
-                <a
+                <Link
                     href={`mailto:${GENERAL_INFO.email}`}
-                    className="text-3xl sm:text-4xl font-anton inline-block mt-5 mb-10 hover:underline"
+                    className="text-3xl sm:text-4xl font-anton inline-block mt-5 mb-8 hover:underline"
                 >
                     {GENERAL_INFO.email}
-                </a>
+                </Link>
 
-                <div className="">
-                    <a
-                        href="https://github.com/Rashid004/Portfolio"
-                        target="_blank"
-                        className="leading-none text-muted-foreground hover:underline hover:text-white"
-                    >
-                        Design & built by Rashid
-                        <div className="flex items-center justify-center gap-5 pt-1">
-                            <span className="flex items-center gap-2">
-                                <Star size={18} /> {stargazers_count}
-                            </span>
-                            <span className="flex items-center gap-2">
-                                <GitFork size={18} /> {forks_count}
-                            </span>
-                        </div>
-                    </a>
-                </div>
+                <ul className="flex items-center justify-center gap-3 mb-10">
+                    {SOCIAL_LINKS.map((link) => {
+                        const Icon = SOCIAL_ICONS[link.name];
+                        return (
+                            <li key={link.name}>
+                                <a
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label={link.name}
+                                    className="group flex size-11 items-center justify-center rounded-full border border-white/10 text-foreground/70 transition-all duration-300 hover:border-primary/40 hover:text-primary hover:-translate-y-1"
+                                >
+                                    {Icon && (
+                                        <Icon className="size-[18px] transition-transform duration-300 group-hover:scale-110" />
+                                    )}
+                                </a>
+                            </li>
+                        );
+                    })}
+                </ul>
             </div>
         </footer>
     );
