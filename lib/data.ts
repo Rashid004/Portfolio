@@ -1,4 +1,4 @@
-import { IProject } from '@/types';
+import { ICertification, IProject } from '@/types';
 
 export const GENERAL_INFO = {
  email: 'rashidansari3868038@gmail.com',
@@ -415,6 +415,30 @@ export const MY_EXPERIENCE = [
   company: 'DotSyndicate',
   logo: '/logo/dotsyndicate.png',
   duration: 'Aug 2024 - Feb 2025',
+ },
+];
+
+export const MY_CERTIFICATIONS: ICertification[] = [
+ {
+  title: 'Meta Front-End Developer',
+  issuer: 'Coursera',
+  issuerLogo: 'https://cdn.simpleicons.org/coursera/FFFFFF',
+  date: '2024',
+  credentialUrl: '#',
+ },
+ {
+  title: 'AWS Certified Cloud Practitioner',
+  issuer: 'Amazon Web Services',
+  issuerLogo: '/logo/aws.png',
+  date: '2024',
+  credentialUrl: '#',
+ },
+ {
+  title: 'JavaScript Algorithms and Data Structures',
+  issuer: 'freeCodeCamp',
+  issuerLogo: 'https://cdn.simpleicons.org/freecodecamp/FFFFFF',
+  date: '2023',
+  credentialUrl: '#',
  },
 ];
 

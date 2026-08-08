@@ -15,6 +15,14 @@ export type Variant =
     | 'link'
     | 'no-color';
 
+export interface ICertification {
+    title: string;
+    issuer: string;
+    issuerLogo?: string;
+    date: string;
+    credentialUrl?: string;
+}
+
 export interface IProject {
     title: string;
     year: number;

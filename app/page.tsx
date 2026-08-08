@@ -1,5 +1,6 @@
 import AboutMe from './_components/AboutMe';
 import Banner from './_components/Banner';
+import Certifications from './_components/Certifications';
 import Education from './_components/Education';
 import Experiences from './_components/Experiences';
 import Skills from './_components/Skills';
@@ -14,6 +15,7 @@ export default function Home() {
             <Experiences />
             <ProjectList />
             <Education />
+            <Certifications />
         </div>
     );
 }
